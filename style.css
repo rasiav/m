@@ -16,10 +16,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url('https://images3.alphacoders.com/131/thumb-1920-1314539.png');
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-color: #f4f4f4; /* Fallback color in case the image fails to load */
+    margin: 0; /* Removes default margin */
+    height: 100vh; /* Ensures the background covers the full viewport height */
+}
+
+#text {
+    color: #000000;
 }
 
 .container {
-    background-color: #f9f9f9;
+    background-color: #f9f9f9db;
+    color: #000000;
     transition: 1s ease;
     width: 80%;
     max-width: 40rem;
@@ -141,6 +153,10 @@ button:active {
 #message {
     font-size: 1.5rem;
     color: #333;
+}
+
+#text {
+    color: #000000;
 }
 
 h3 {

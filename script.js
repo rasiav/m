@@ -14,21 +14,16 @@ let progress = document.getElementById("progress");
 let message = document.getElementById("message");
 let operator = ['+', '-', '*', '/'];
 let t;
+let timerSpeed = 30; // Default timerSpeed, adjust based on difficulty
 
 function startTutorial() {
-    document.getElementById("tutorial-section").style.display = "none";
+    startBox.style.display = "none";
     document.getElementById("difficulty-selection").style.display = "block";
 }
 
 function reloadPage() {
     location.reload(); // Reloads the current page
-
-
-    
 }
-
-
-
 
 function showCustomOptions() {
     document.getElementById("difficulty-selection").style.display = "none";
@@ -63,9 +58,13 @@ function startGame(difficulty) {
     document.getElementById("in-game").style.display = "block";
 }
 
+function count() {
+    let currentQNo = parseInt(qNo.innerHTML, 10);
+    qNo.innerHTML = currentQNo + 1;
+}
+
 function resetGame() {
     // Reset game state
-    console.log("Resetting game...");
     qNo.innerHTML = "0"; // Start question number from 1
     score.innerHTML = "0";
     progress.style.width = "100%";
@@ -78,13 +77,7 @@ function resetGame() {
 }
 
 function initGame() {
-    let currentQNo = parseInt(qNo.innerHTML, 10);
-    console.log("Current QNo:", currentQNo);
-    qNo.innerHTML = currentQNo + 1;
-    console.log("Updated QNo:", qNo.innerHTML);
-    
     nextQuestion();
-    console.log("Next question triggered...");
     gameBox.style.display = "block";
     endBox.style.display = "none";
 }
@@ -96,30 +89,28 @@ function whenFinished() {
 }
 
 function nextQuestion() {
-    console.log("Progress bar width before update:", progress.style.width);
-    progress.style.width = "100%"; // Reset progress bar width
-    timed(); // Start the timer for the new question
+    timed();
 
     document.getElementById("final-score").innerHTML = score.innerHTML;
-
-    if (parseInt(qNo.innerText, 10) > 10) {
+    if (parseInt(qNo.innerText, 10) > 9) { // Ensure it stops after 10 questions
         whenFinished();
         return;
     }
 
-    let a = Math.floor(Math.random() * intensity * 10) + 1;
-    let d = Math.floor(Math.random() * intensity * 5) + 1;
+    let a = Math.floor(Math.random() * intensity * 10) + 1; // Starting value between 1 and 10
+    let d = Math.floor(Math.random() * intensity * 5) + 1;  // Common difference between 1 and 5
+
     let harmonicSequence = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i++) { // Create a sequence of 5 terms
         let term = a + i * d;
         harmonicSequence.push(`1/${term}`);
     }
-
+    let currentQNo = parseInt(qNo.innerHTML, 10);
+    console.log("Current QNo:", currentQNo);
     question.innerHTML = harmonicSequence.slice(0, -1).join(", ") + ", ... ?";
     answer = harmonicSequence[harmonicSequence.length - 1];
     getOptions();
 }
-
 
 function getOptions() {
     ansOpt = Math.floor(Math.random() * 4); // Randomly choose the correct answer position
@@ -137,21 +128,11 @@ function getOptions() {
     });
 }
 
-
 function getScore() {
     score.innerHTML = parseInt(score.innerHTML, 10) + (1000 / 10); // Adjusted to increment by 100 per question
 }
 
-
-
 function handleAnswerClick(index) {
-    // Move nextQuestion call here
-    nextQuestion();
-  
-    let currentQNo = parseInt(qNo.innerHTML, 10);
-    console.log("Current QNo:", currentQNo);
-    qNo.innerHTML = currentQNo + 1;
-    console.log("Updated QNo:", qNo.innerHTML);
     if (buttons[index].innerHTML === answer) {
         doWhenCorrect(index);
     } else {
@@ -169,7 +150,6 @@ function doWhenCorrect(i) {
 function doWhenIncorrect(i) {
     buttons[i].style.color = "#fff";
     buttons[i].style.backgroundColor = "#fb3640";
-    
 }
 
 function outro(i) {
@@ -177,46 +157,69 @@ function outro(i) {
         nextQuestion();
         buttons[i].style.color = "#000";
         buttons[i].style.backgroundColor = "rgba(0, 0, 0, 0.1)";
-    }, 0);
+    }, 500);
 }
 
 function lastMessage() {
     clearInterval(t);
-    let emoji;
-    if (parseInt(document.getElementById("final-score").innerText, 10) >= 800) {
-        emoji = "&#128525;";
-        message.innerHTML = "WOW !! UNBELIEVABLE !! " + emoji;
-    } else if (parseInt(document.getElementById("final-score").innerText, 10) >= 500) {
-        emoji = "&#128531;";
-        message.innerHTML = "TOO CLOSE !! " + emoji;
-    } else if (parseInt(document.getElementById("final-score").innerText, 10) >= 100) {
-        emoji = "&#128549;";
-        message.innerHTML = "Better luck next time " + emoji;
+    const finalScore = parseInt(document.getElementById("final-score").innerText, 10);
+
+    if (finalScore >= 800) {
+        message.innerHTML = "WOW !! UNBELIEVABLE !! ";
+    } else if (finalScore >= 500) {
+        message.innerHTML = "TOO CLOSE !! ";
+    } else if (finalScore >= 100) {
+        message.innerHTML = "Better luck next time ";
     } else {
-        emoji = "&#128577;";
-        message.innerHTML = "Bad Luck " + emoji;
+        message.innerHTML = "Bad Luck ";
     }
 }
 
 function timed() {
-    console.log("Starting timer with speed:", timerSpeed);
-    let progressWidth = parseFloat(progress.style.width);
+    const intervalTime = timerSpeed * 10;
+    const progressElement = document.querySelector('#progress');
+    
+    if (!progressElement) {
+        console.error("Progress element not found");
+        return;
+    }
+
+    let width = parseInt(progressElement.style.width, 10);
+    if (isNaN(width)) width = 100; // Default width
+
     t = setInterval(() => {
-        progressWidth -= 15; // Decrease by a fixed amount per interval
-        if (progressWidth <= 0) {
-            progressWidth = 0; // Ensure it does not go negative
+        width -= 1;
+        if (width < 0) width = 0; // Prevent negative width
+        progressElement.style.width = width + "%";
+
+        if (width <= 0) {
             clearInterval(t);
-            whenFinished();
+            gameBox.style.display = "none";
+            endBox.style.display = "flex";
+
+            let emoji;
+            const finalScore = parseInt(document.getElementById("final-score").innerText, 10);
+
+            if (finalScore >= 800) {
+                emoji = "&#128525;";
+                message.innerHTML = "WOW !! UNBELIEVABLE !! " + emoji;
+            } else if (finalScore >= 500) {
+                emoji = "&#128531;";
+                message.innerHTML = "TOO CLOSE !! " + emoji;
+            } else if (finalScore >= 100) {
+                emoji = "&#128549;";
+                message.innerHTML = "Better luck next time " + emoji;
+            } else {
+                emoji = "&#128577;";
+                message.innerHTML = "Bad Luck " + emoji;
+            }
+
+            console.log("lastMessage");
         }
-        progress.style.width = progressWidth + "px";
-    }, timerSpeed * 100); // Timer speed in milliseconds
+    }, intervalTime);
 }
 
-
-
 document.getElementById("restart-btn").addEventListener('click', () => {
-    // Reset game and show tutorial section
-    
-    document.getElementById("tutorial-section").style.display = "none";
-    document.getElementById("difficulty-selection").style.display = "block";
+    startBox.style.display = "block";
+    endBox.style.display = "none";
 });
