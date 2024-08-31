@@ -201,17 +201,17 @@ function timed() {
             const finalScore = parseInt(document.getElementById("final-score").innerText, 10);
 
             if (finalScore >= 800) {
-                emoji = "&#128525;";
-                message.innerHTML = "WOW !! UNBELIEVABLE !! " + emoji;
+                emoji = "";
+                message.innerHTML = "WOW !! UNBELIEVABLE !! " ;
             } else if (finalScore >= 500) {
-                emoji = "&#128531;";
-                message.innerHTML = "TOO CLOSE !! " + emoji;
+                emoji = "";
+                message.innerHTML = "TOO CLOSE !! ";
             } else if (finalScore >= 100) {
-                emoji = "&#128549;";
-                message.innerHTML = "Better luck next time " + emoji;
+                emoji = "";
+                message.innerHTML = "Better luck next time ";
             } else {
-                emoji = "&#128577;";
-                message.innerHTML = "Bad Luck " + emoji;
+                emoji = "";
+                message.innerHTML = "Bad Luck ";
             }
 
             console.log("lastMessage");
