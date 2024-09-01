@@ -1,0 +1,30 @@
+body {
+    background-color: #0d0a20;
+}
+
+.bg-hakushin-900 {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)) repeat fixed 0px 0px / cover padding-box border-box,
+    rgba(0, 0, 0, 0) linear-gradient(48.17deg, rgb(83, 72, 202) 11.21%, rgb(20, 7, 48) 61.92%) repeat fixed 0px 0px / cover padding-box border-box;
+}
+
+.custom-button {
+    display: inline-block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background-color: #4f46e5;
+    border: none;
+    border-radius: 0.375rem;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+.custom-button:hover {
+    background-color: #3730a3;
+}
+
+input::placeholder {
+    color: #9ca3af;
+}

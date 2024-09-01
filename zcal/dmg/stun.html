@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="images/Rikka.jpg">
+    <link rel="apple-touch-icon" href="images/Rikka.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d0a20" />
+    <title>Calculator Template</title>
+    <link rel="stylesheet" href="https://cdn.tailwindcss.com" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: 'OTWelcomeRA', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="h-full bg-hakushin-900 text-slate-200 flex justify-center items-center">
+    <div class="max-w-xl w-full p-8 bg-gray-800 rounded-lg shadow-lg text-center">
+      <h1 class="text-2xl font-light mb-4 text-white">[Calculator Title]</h1>
+
+      <form id="calcForm">
+        <div class="mb-4">
+          <label for="input1" class="block text-sm font-medium text-white">Input Label 1:</label>
+          <input type="number" id="input1" class="mt-1 block w-full p-2 bg-gray-700 border border-gray-600 rounded-md text-white" required />
+        </div>
+
+        <div class="mb-4">
+          <label for="input2" class="block text-sm font-medium text-white">Input Label 2:</label>
+          <input type="number" id="input2" class="mt-1 block w-full p-2 bg-gray-700 border border-gray-600 rounded-md text-white" required />
+        </div>
+
+        <div class="mb-4">
+          <label for="input3" class="block text-sm font-medium text-white">Input Label 3:</label>
+          <input type="number" id="input3" class="mt-1 block w-full p-2 bg-gray-700 border border-gray-600 rounded-md text-white" required />
+        </div>
+
+        <button type="button" onclick="calculate()" class="custom-button">
+          Calculate
+        </button>
+      </form>
+
+      <div id="result" class="mt-6 text-center text-lg text-white">
+        <!-- Result will be displayed here -->
+      </div>
+    </div>
+
+    <script>
+      function calculate() {
+        const input1 = parseFloat(document.getElementById('input1').value);
+        const input2 = parseFloat(document.getElementById('input2').value);
+        const input3 = parseFloat(document.getElementById('input3').value);
+
+        const result = input1 + input2 + input3;
+
+        document.getElementById('result').textContent = 'Result: ' + result;
+      }
+    </script>
+  </body>
+</html>
