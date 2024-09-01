@@ -6,47 +6,57 @@
   <link rel="apple-touch-icon" href="images/Rikka.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0d0a20" />
-  <title>Stats</title>
+  <title>Average Damage</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <button class="back-button" onclick="goBack()">Back</button>
 
-  <h1 class="title">Stats</h1>
+  <h1 class="title">Average Damage</h1>
 
   <div class="form-container">
     <form id="calcForm" class="calc-form">
       <div class="input-group">
-        <label for="input1" class="input-label">Agent Base Stat:</label>
+        <label for="input1" class="input-label">Base Damage:</label>
         <input type="number" id="input1" class="input-field" required />
       </div>
 
       <div class="input-group">
-        <label for="input2" class="input-label">WEngine Base Stat:</label>
+        <label for="input2" class="input-label">Damage % Multiplier:</label>
         <input type="number" id="input2" class="input-field" required />
       </div>
 
       <div class="input-group">
-        <label for="input3" class="input-label">Standard Stat%:</label>
+        <label for="input3" class="input-label">Damage Reduction Multiplier:</label>
         <input type="number" id="input3" class="input-field" required />
       </div>
 
       <div class="input-group">
-        <label for="input4" class="input-label">Standard Flat Stat:</label>
+        <label for="input4" class="input-label">Defense Multiplier:</label>
         <input type="number" id="input4" class="input-field" required />
       </div>
 
       <div class="input-group">
-        <label for="input5" class="input-label">Combat Stat%:</label>
+        <label for="input5" class="input-label">Resistance Multiplier:</label>
         <input type="number" id="input5" class="input-field" required />
       </div>
 
       <div class="input-group">
-        <label for="input6" class="input-label">Combat Flat Stat:</label>
+        <label for="input6" class="input-label">Stun Multiplier:</label>
         <input type="number" id="input6" class="input-field" required />
       </div>
 
-      <button type="button" onclick="calculate('stats')" class="custom-button">
+      <div class="input-group">
+        <label for="input7" class="input-label">Crit Rate%:</label>
+        <input type="number" id="input7" class="input-field" required />
+      </div>
+
+      <div class="input-group">
+        <label for="input8" class="input-label">Crit Damage:</label>
+        <input type="number" id="input8" class="input-field" required />
+      </div>
+
+      <button type="button" onclick="calculate('averagedmg')" class="custom-button">
         Calculate
       </button>
     </form>
