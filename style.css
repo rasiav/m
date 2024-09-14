@@ -1,5 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
 
+#custom-options {
+    background-color: #000000; /* Matches the container background color */
+    color: #fff; /* Light text color for contrast */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Slightly enhanced shadow for better contrast */
+}
+
+#custom-options h2 {
+    color: rgba(255, 255, 255, 0.922); /* Matches h2 color from your container */
+    margin-bottom: 20px;
+}
+
+#custom-options label {
+    display: block;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.87); /* Slightly lighter color for labels */
+}
+
+#custom-options input {
+    background-color: #fff; /* White input fields */
+    color: #000; /* Dark text color for input */
+    border: 1px solid #ccc; /* Subtle border */
+    border-radius: 4px;
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Slight shadow to match the button style */
+}
+
+#custom-options button {
+    background-color: #397358; /* Matches the button color from your container */
+    color: #fff; /* White text color for the button */
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: 0.3s ease;
+}
+
+#custom-options button:hover {
+    background-color: #40916c; /* Slightly lighter green for hover */
+    transform: translateY(-2px);
+}
+
+#custom-options button:active {
+    background-color: #52b788; /* Slightly lighter green for active state */
+    transform: translateY(0);
+}
+
 * {
     margin: 0;
     padding: 0;
