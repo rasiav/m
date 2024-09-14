@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.png">
     <script src="script.js" defer></script>
     <title>Maths Quiz Game</title>
 </head>
@@ -20,10 +23,14 @@
         <div id="tutorial-section">
             <h1>Welcome to the Maths Quiz Game</h1>
             <h2>What is a Harmonic Sequence?</h2>
-            <p>A harmonic sequence is a sequence of numbers where the reciprocal of each term forms an arithmetic sequence. In simpler terms, it’s a series like 1, 1/2, 1/3, 1/4, ..., where each number after the first is the sum of the previous number plus a fixed number (common difference).</p>
+            <p>A harmonic sequence is a sequence of numbers where the reciprocal of each term forms an arithmetic sequence.</p>
             <h2>How the Quiz Works</h2>
             <p>You will be given a series of questions based on harmonic sequences. Each question will challenge you to identify the correct term in the sequence. The difficulty increases as you progress.</p>
             <button id="exit-tutorial-btn" onclick="startTutorial()">Start Game</button>
+            <!-- Add the Credit button -->
+            <button id="credit-btn" onclick="window.location.href='credits.html'">Credits</button>
+            <button id="tutorial" onclick="window.location.href='tutorial.html'">Tutorial</button>
+
         </div>
 
         <div id="difficulty-selection" style="display: none;">
@@ -65,15 +72,25 @@
                 <button onclick="count()">Option C</button>
                 <button onclick="count()">Option D</button>
             </div>
+            <div class="notification" id="notification" style="display: none; position: fixed; bottom: 20px; right: 20px; background-color: #fb3640; color: white; padding: 15px; border-radius: 5px;">
+                <p id="notification-message">Notification</p>
+                <button onclick="hideNotification()">Close</button>
+            </div>
+            
+            
+
+            
+            
         </div>
 
         <div id="end-game" style="display: none;">
             <h1></h1>
             <h1>Your total score was: <span id="final-score">0</span></h1>
-            <p id="message"></p>
+            <p id="message" style="color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.1);"></p>
             <a id="restart-btn" onclick="reloadPage()">GO BACK</a>
         </div>
     </div>
+
 </body>
 
 </html>

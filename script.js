@@ -16,6 +16,16 @@ let operator = ['+', '-', '*', '/'];
 let t;
 let timerSpeed = 30; // Default timerSpeed, adjust based on difficulty
 
+// Function to show the credits section
+function showCredits() {
+    document.getElementById("credit-section").style.display = "block";
+}
+
+// Function to hide the credits section
+function closeCredits() {
+    document.getElementById("credit-section").style.display = "none";
+}
+
 function startTutorial() {
     startBox.style.display = "none";
     document.getElementById("difficulty-selection").style.display = "block";
@@ -54,6 +64,7 @@ function startGame(difficulty) {
 
     resetGame();
     initGame();
+    document.getElementById("difficulty-selection").style.display = "none";
     document.getElementById("custom-options").style.display = "none";
     document.getElementById("in-game").style.display = "block";
 }
@@ -145,12 +156,38 @@ function doWhenCorrect(i) {
     buttons[i].style.color = "#fff";
     buttons[i].style.backgroundColor = "green";
     getScore();
+    showNotification("Correct! Well done!", true);
 }
 
 function doWhenIncorrect(i) {
     buttons[i].style.color = "#fff";
     buttons[i].style.backgroundColor = "#fb3640";
+    showNotification("Wrong answer! Try again.", false);
 }
+
+function showNotification(message, isCorrect) {
+    const notification = document.getElementById('notification');
+    const notificationMessage = document.getElementById('notification-message');
+
+    // Set the message and display the notification
+    notificationMessage.innerHTML = message;
+    notification.style.display = 'block'; // Show the notification
+
+    // Set background color based on correctness
+    notification.style.backgroundColor = isCorrect ? 'green' : '#fb3640';
+
+    // Hide the notification after 3 seconds
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 300);
+}
+
+function hideNotification() {
+    const notification = document.getElementById('notification');
+    notification.style.display = 'none'; // Hide the notification
+}
+
+
 
 function outro(i) {
     setTimeout(() => {
@@ -178,7 +215,7 @@ function lastMessage() {
 function timed() {
     const intervalTime = timerSpeed * 10;
     const progressElement = document.querySelector('#progress');
-    
+
     if (!progressElement) {
         console.error("Progress element not found");
         return;
